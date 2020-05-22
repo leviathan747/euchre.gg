@@ -19,7 +19,7 @@ export default class Hand extends React.Component {
     return (
       <Grid item>
         <div>
-          {this.state.cards.map((card, i) => <img src={`/docs/cards/${card}.svg`} style={{
+          {this.state.cards.map((card, i) => <img src={`/euchre.gg/docs/cards/${card}.svg`} style={{
             width: screen.width * this.state.width,
             marginLeft: i ? -(Math.floor(screen.width * this.state.width * 1.4)) * (1.0 - this.state.spacing) : 0,
             paddingTop: (screen.height - Math.floor(screen.width * this.state.width * 1.4)) / 2
