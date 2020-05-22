@@ -2,13 +2,13 @@ const webpack = require('webpack');
 const resolve = require('path').resolve;
 
 const config = {
-  mode: 'development',
-  devtool: 'eval-source-map',
+  //mode: 'development',
+  //devtool: 'eval-source-map',
   entry: ['@babel/polyfill',  __dirname + '/js/index.jsx'],
   output:{
-    path: resolve('./static/'),
+    path: resolve('./docs/'),
     filename: 'euchre.js',
-    publicPath: resolve('./static/')
+    publicPath: resolve('./docs/')
   },
   resolve: {
     extensions: ['.js','.jsx','.css']
@@ -35,7 +35,7 @@ const config = {
           options: {
             name: '[name].[ext]',
             outputPath: '/fonts/',
-            publicPath: '/static/fonts'
+            publicPath: '/docs/fonts'
           }
         }
       ]
