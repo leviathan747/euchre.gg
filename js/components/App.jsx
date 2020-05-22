@@ -1,7 +1,12 @@
 import React from 'react';
 
+import Hand from './Hand';
+import Table from './Table';
+
 export default function App(props) {
   return (
-    <div>Hello World</div>
+    <Table>
+      <Hand />
+    </Table>
   );
 }
