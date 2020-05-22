@@ -11,7 +11,7 @@ const style = {
   left: '0',
   width: '100%',
   height: '100%',
-  backgroundImage: 'url(\'/euchre.gg/docs/images/table.jpg\')',
+  backgroundImage: 'url(\'/euchre.gg/images/table.jpg\')',
   backgroundColor: 'green',
   zIndex: -1
 };
