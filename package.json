@@ -1,0 +1,33 @@
+{
+  "name": "euchre.gg",
+  "version": "0.0.1",
+  "description": "Interactive Euchre game",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leviathan747/euchre.gg.git"
+  },
+  "scripts": {
+    "build": "webpack -p --progress --config webpack.config.js",
+    "watch": "webpack --progress -d --config webpack.config.js --watch"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@material-ui/core": "^4.8.2",
+    "@material-ui/icons": "^4.5.1",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.0",
+    "file-loader": "^5.0.2",
+    "idb": "^5.0.2",
+    "style-loader": "^1.1.2",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
