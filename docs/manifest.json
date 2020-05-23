@@ -13,10 +13,10 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/euchre.gg",
+  "start_url": "/euchre.gg/",
   "orientation": "landscape",
   "display": "standalone",
   "background_color": "white",
   "theme_color": "white",
-  "scope": "/euchre.gg"
+  "scope": "/euchre.gg/"
 }
