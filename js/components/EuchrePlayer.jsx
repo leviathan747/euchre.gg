@@ -38,7 +38,7 @@ export default withTheme(class EuchrePlayer extends React.Component {
             easing: this.props.theme.transitions.easing.easeInOut, 
             duration: this.props.theme.transitions.duration.leavingScreen,
           })}} >
-            <TrumpPicker singleSuit={this.state.singleSuit} disabledSuit={this.state.disabledSuit} />
+            <TrumpPicker singleSuit={this.state.singleSuit} disabledSuit={this.state.disabledSuit} onPass={() => {this.setState(Object.assign({}, this.state, {choosingTrump: false}))}} />
           </Grid>
         </Fade>
         ) : (null)}

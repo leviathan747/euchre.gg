@@ -38,7 +38,7 @@ export default function TrumpPicker(props) {
       )}
       <Grid item>
         <ButtonGroup orientation="vertical" variant="contained">
-          <Button>Pass</Button>
+          <Button onClick={props.onPass}>Pass</Button>
           <Button disabled={!props.singleSuit && trump === ''}>Call up</Button>
           <Button disabled={!props.singleSuit && trump === ''}>Go alone</Button>
         </ButtonGroup>
