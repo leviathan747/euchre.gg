@@ -22,7 +22,7 @@ export default function Table(props) {
       <div style={style}>
       </div>
       <Container maxWidth={false} disableGutters>
-        <Grid container alignItems="center" justify="center" height={411}>
+        <Grid container>
           {props.children}
         </Grid>
       </Container>

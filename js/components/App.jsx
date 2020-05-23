@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Hand from './Hand';
+import EuchrePlayer from './EuchrePlayer';
 import Table from './Table';
 
 export default function App(props) {
   return (
     <Table>
-      <Hand />
+      <EuchrePlayer />
     </Table>
   );
 }
