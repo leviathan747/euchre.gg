@@ -15,7 +15,6 @@ export default class Hand extends React.Component {
   }
 
   render() {
-    console.log('rerender');
     return (
       <Grid item>
         <div>

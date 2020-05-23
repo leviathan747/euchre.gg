@@ -1,0 +1,22 @@
+{
+  "short_name": "Euchre",
+  "name": "Euchre",
+  "icons": [
+    {
+      "src": "/euchre.gg/images/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/euchre.gg/images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/euchre.gg",
+  "orientation": "landscape",
+  "display": "standalone",
+  "background_color": "white",
+  "theme_color": "white",
+  "scope": "/euchre.gg"
+}
