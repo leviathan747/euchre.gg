@@ -14,6 +14,8 @@ export default withTheme(class Hand extends React.Component {
   }
 
   render() {
+    const width = this.props.width || visualViewport.width * 0.95;
+    const height = this.props.height || visualViewport.height * 0.95;
     return (
       <Grid item>
         {this.props.cards.map((card, i) => <img src={`/euchre.gg/cards/${card}.svg`} 
@@ -26,10 +28,10 @@ export default withTheme(class Hand extends React.Component {
             }
           }}
           style={{
-            width: screen.width * this.state.width,
-            marginLeft: i ? -(Math.floor(screen.width * this.state.width * 1.4)) * (1.0 - this.state.spacing) : 0,
-            paddingTop: (screen.height - Math.floor(screen.width * this.state.width * 1.4)) / 4 * (this.props.activeCard === card ? 1 : 2),
-            paddingBottom: (screen.height - Math.floor(screen.width * this.state.width * 1.4)) / 4 * (this.props.activeCard === card ? 3 : 2),
+            width: width * this.state.width,
+            marginLeft: i ? -(Math.floor(width * this.state.width * 1.4)) * (1.0 - this.state.spacing) : 0,
+            paddingTop: (height - Math.floor(width * this.state.width * 1.4)) / 3 * (this.props.activeCard === card ? 1 : 2),
+            paddingBottom: (height - Math.floor(width * this.state.width * 1.4)) / 3 * (this.props.activeCard === card ? 2 : 1),
             transition: this.props.theme.transitions.create("all", {
               easing: this.props.theme.transitions.easing.easeInOut, 
               duration: this.props.theme.transitions.duration.leavingScreen,
