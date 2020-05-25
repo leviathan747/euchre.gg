@@ -29,8 +29,20 @@ export default withTheme(class EuchrePlayer extends React.Component {
   render() {
     const choosingTrump = !this.props.gameState.hand.trump && this.props.gameState.hand.turn === this.props.player;
     const hand = orderHand(this.props.gameState.hand.hands[this.props.player-1], this.props.gameState.hand.trump);
+    const dealer = this.props.gameState.hand.dealer === this.props.player;
+    const turn = this.props.gameState.hand.turn === this.props.player;
     return (
       <Grid container>
+        <Grid item xs={12} container justify="flex-end">
+          <Grid item>
+            <img height="40" width="40" style={{padding: 5, filter: !turn ? 'opacity(0%)' : 'none'}} src="/euchre.gg/images/play_alt-512.png" />
+          </Grid>
+          {dealer ? (
+          <Grid item>
+            <img height="40" width="40" style={{padding: 5}} src="/euchre.gg/images/dealer.svg" />
+          </Grid>
+          ) : (null)}
+        </Grid>
         <Grid item xs={choosingTrump ? 10 : 12} container alignItems="center" justify="center"
               style={{transition: this.props.theme.transitions.create("all", {
                 easing: this.props.theme.transitions.easing.easeInOut, 

@@ -16,6 +16,7 @@ export default class EuchreGame extends Game {
           bScore: 0
         },
         hand: {
+          dealer: 1,
           turn: 1,
           trump: undefined,
           topCard: undefined,

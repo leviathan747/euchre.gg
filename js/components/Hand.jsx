@@ -15,7 +15,7 @@ export default withTheme(class Hand extends React.Component {
 
   render() {
     const width = this.props.width || visualViewport.width * 0.95;
-    const height = this.props.height || visualViewport.height * 0.95;
+    const height = this.props.height || (visualViewport.height - 50) * 0.95;
     return (
       <Grid item>
         {this.props.cards.map((card, i) => <img src={`/euchre.gg/cards/${card}.svg`} 
