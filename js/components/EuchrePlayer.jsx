@@ -1,8 +1,10 @@
 import React from 'react';
 import { withTheme } from '@material-ui/core/styles';
 
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Chip from '@material-ui/core/Chip';
 import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
 
@@ -34,12 +36,18 @@ export default withTheme(class EuchrePlayer extends React.Component {
     return (
       <Grid container>
         <Grid item xs={12} container justify="flex-end">
+          {turn ? (
           <Grid item>
-            <img height="40" width="40" style={{padding: 5, filter: !turn ? 'opacity(0%)' : 'none'}} src="/euchre.gg/images/play_alt-512.png" />
+            <Box pt={1} pr={1}>
+              <Chip label="your turn" style={{height: 40}} />
+            </Box>
           </Grid>
+          ) : (null)}
           {dealer ? (
           <Grid item>
-            <img height="40" width="40" style={{padding: 5}} src="/euchre.gg/images/dealer.svg" />
+            <Box pt={1} pr={1}>
+              <img height="40" width="40" src="/euchre.gg/images/dealer.svg" />
+            </Box>
           </Grid>
           ) : (null)}
         </Grid>
