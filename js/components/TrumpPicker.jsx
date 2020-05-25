@@ -10,10 +10,10 @@ export default function TrumpPicker(props) {
   const [trump, setTrump] = useState('');
   return (
     <Grid item container direction="column" alignItems="center" justify="center">
-      {props.singleSuit ? (
+      {props.topCard ? (
       <Grid item>
         <div style={{width: '60%', paddingLeft: '20%'}}>
-          <TrumpSelection suit={props.singleSuit} width="100%" />
+          <TrumpSelection card={props.topCard} width="100%" />
         </div>
       </Grid>
       ) : (
@@ -39,8 +39,8 @@ export default function TrumpPicker(props) {
       <Grid item>
         <ButtonGroup orientation="vertical" variant="contained">
           <Button onClick={props.onPass}>Pass</Button>
-          <Button disabled={!props.singleSuit && trump === ''}>Call up</Button>
-          <Button disabled={!props.singleSuit && trump === ''}>Go alone</Button>
+          <Button disabled={!props.topCard && trump === ''}>Call up</Button>
+          <Button disabled={!props.topCard && trump === ''}>Go alone</Button>
         </ButtonGroup>
       </Grid>
     </Grid>

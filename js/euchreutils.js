@@ -46,5 +46,6 @@ export function orderHand(hand, trump) {
     }
     return cmpVal;
   }
-  return hand.sort(cmp);
+  const orderedHand = [...hand];
+  return orderedHand.sort(cmp);
 }

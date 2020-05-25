@@ -15,33 +15,36 @@ export default withTheme(class EuchrePlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trump: 'C',
-      choosingTrump: true,
-      disabledSuit: undefined,
-      hand: ['QC', 'JS', 'AH', 'JC', 'QH'],
       selectedCard: undefined
     }
   }
 
+  onPass() {
+    const state = this.props.gameState;
+    // TODO handle dealer case
+    state.hand.turn = (state.hand.turn + 1) % 4;
+    this.props.onGameStateChange(state);
+  }
+
   render() {
-    const hand = this.state.hand;
-    orderHand(hand, this.state.trump);
+    const choosingTrump = !this.props.gameState.hand.trump && this.props.gameState.hand.turn === this.props.player;
+    const hand = orderHand(this.props.gameState.hand.hands[this.props.player-1], this.props.gameState.hand.trump);
     return (
       <Grid container>
-        <Grid item xs={this.state.callingUpTrump || this.state.choosingTrump ? 10 : 12} container alignItems="center" justify="center"
+        <Grid item xs={choosingTrump ? 10 : 12} container alignItems="center" justify="center"
               style={{transition: this.props.theme.transitions.create("all", {
                 easing: this.props.theme.transitions.easing.easeInOut, 
                 duration: this.props.theme.transitions.duration.leavingScreen,
               })}} >
           <Hand cards={hand} activeCard={this.state.selectedCard} onSelect={(card) => {this.setState(Object.assign({}, this.state, {selectedCard: card}))}} />
         </Grid>
-        {this.state.choosingTrump ? (
+        {choosingTrump ? (
         <Fade in={true} style={{transitionDelay: this.props.theme.transitions.duration.leavingScreen}}>
           <Grid item xs={2} container alignItems="center" style={{transition: this.props.theme.transitions.create("all", {
             easing: this.props.theme.transitions.easing.easeInOut, 
             duration: this.props.theme.transitions.duration.leavingScreen,
           })}} >
-            <TrumpPicker singleSuit={this.state.trump} disabledSuit={this.state.disabledSuit} onPass={() => {this.setState(Object.assign({}, this.state, {choosingTrump: false}))}} />
+            <TrumpPicker topCard={this.props.gameState.hand.topCard} disabledSuit={this.props.gameState.hand.invalidSuit} onPass={this.onPass.bind(this)} />
           </Grid>
         </Fade>
         ) : (null)}
