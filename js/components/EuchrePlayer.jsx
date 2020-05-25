@@ -36,6 +36,11 @@ export default withTheme(class EuchrePlayer extends React.Component {
     return (
       <Grid container>
         <Grid item xs={12} container justify="flex-end">
+          <Grid item>
+            <Box pt={1} pr={1}>
+              <div style={{height: 40}}></div>
+            </Box>
+          </Grid>
           {turn ? (
           <Grid item>
             <Box pt={1} pr={1}>
