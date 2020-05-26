@@ -22,9 +22,26 @@ export default withTheme(class EuchrePlayer extends React.Component {
   }
 
   onPass() {
-    const state = this.props.gameState;
     // TODO handle dealer case
-    state.hand.turn = (state.hand.turn + 1) % 4;
+    const state = this.props.gameState;
+    state.hand.turn = (state.hand.turn % 4) + 1;
+    this.props.onGameStateChange(state);
+  }
+
+  onCallUp(suit, alone) {
+    // TODO handle going alone
+    const state = this.props.gameState;
+    state.hand.trump = suit;
+    if (state.hand.dealer !== this.props.player) {
+      // if this is the dealer, they need to choose a discard otherwise the
+      // turn advances to the player left of the deal to start main gameplay
+      state.hand.turn = (state.hand.dealer % 4) + 1;
+    }
+    // add the top card to the dealer's hand
+    if (state.hand.topCard) {
+      state.hand.hands[this.props.gameState.hand.dealer-1].push(this.props.gameState.hand.topCard);
+      state.hand.topCard = undefined;
+    }
     this.props.onGameStateChange(state);
   }
 
@@ -35,7 +52,7 @@ export default withTheme(class EuchrePlayer extends React.Component {
     const turn = this.props.gameState.hand.turn === this.props.player;
     return (
       <Grid container>
-        <Grid item xs={12} container justify="flex-end">
+        <Grid item xs={12} container alignItems="center" justify="flex-end">
           <Grid item>
             <Box pt={1} pr={1}>
               <div style={{height: 40}}></div>
@@ -44,14 +61,21 @@ export default withTheme(class EuchrePlayer extends React.Component {
           {turn ? (
           <Grid item>
             <Box pt={1} pr={1}>
-              <Chip label="your turn" style={{height: 40}} />
+              <Chip label="your turn" />
+            </Box>
+          </Grid>
+          ) : (null)}
+          {this.props.gameState.hand.trump ? (
+          <Grid item>
+            <Box pt={1} pr={1}>
+              <img height="40" src={`/euchre.gg/cards/${this.props.gameState.hand.trump}.svg`} />
             </Box>
           </Grid>
           ) : (null)}
           {dealer ? (
           <Grid item>
             <Box pt={1} pr={1}>
-              <img height="40" width="40" src="/euchre.gg/images/dealer.svg" />
+              <img height="40" src="/euchre.gg/images/dealer.svg" />
             </Box>
           </Grid>
           ) : (null)}
@@ -69,7 +93,7 @@ export default withTheme(class EuchrePlayer extends React.Component {
             easing: this.props.theme.transitions.easing.easeInOut, 
             duration: this.props.theme.transitions.duration.leavingScreen,
           })}} >
-            <TrumpPicker topCard={this.props.gameState.hand.topCard} disabledSuit={this.props.gameState.hand.invalidSuit} onPass={this.onPass.bind(this)} />
+            <TrumpPicker topCard={this.props.gameState.hand.topCard} disabledSuit={this.props.gameState.hand.invalidSuit} onPass={this.onPass.bind(this)} onCallUp={this.onCallUp.bind(this)} />
           </Grid>
         </Fade>
         ) : (null)}

@@ -5,9 +5,11 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Grid from '@material-ui/core/Grid';
 
 import TrumpSelection from './TrumpSelection';
+import { decodeCard } from '../euchreutils';
 
 export default function TrumpPicker(props) {
-  const [trump, setTrump] = useState('');
+  const card = props.topCard ? decodeCard(props.topCard) : null;
+  const [trump, setTrump] = useState(card ? card.suit : '');
   return (
     <Grid item container direction="column" alignItems="center" justify="center">
       {props.topCard ? (
@@ -39,8 +41,8 @@ export default function TrumpPicker(props) {
       <Grid item>
         <ButtonGroup orientation="vertical" variant="contained">
           <Button onClick={props.onPass}>Pass</Button>
-          <Button disabled={!props.topCard && trump === ''}>Call up</Button>
-          <Button disabled={!props.topCard && trump === ''}>Go alone</Button>
+          <Button disabled={!props.topCard && trump === ''} onClick={() => {props.onCallUp(trump)}}>Call up</Button>
+          <Button disabled={!props.topCard && trump === ''} onClick={() => {props.onCallUp(trump, true)}}>Go alone</Button>
         </ButtonGroup>
       </Grid>
     </Grid>

@@ -2,7 +2,7 @@ const CARD_REGEX = /^(A|K|Q|J|[2-9]|10)(C|D|H|S)$/;
 const FACE_CARDS = {A: 14, K: 13, Q: 12, J:11};
 const COLOR = {C: 'black', D: 'red', H: 'red', S: 'black'};
 
-function decodeCard(cardString) {
+export function decodeCard(cardString) {
   const match = cardString.match(CARD_REGEX);
   if (match) {
     const value = match[1];

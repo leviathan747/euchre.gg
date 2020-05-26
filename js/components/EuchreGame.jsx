@@ -19,7 +19,7 @@ export default class EuchreGame extends Game {
           dealer: 1,
           turn: 1,
           trump: undefined,
-          topCard: undefined,
+          topCard: 'QD',
           invalidSuit: 'H',
           hands: [
             ['QC', 'JS', 'AH', 'JC', 'QH']

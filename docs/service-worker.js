@@ -1,12 +1,50 @@
 // Names of the two caches used in this version of the service worker.
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
-const PRECACHE = 'precache_v3';
-const RUNTIME = 'runtime_v9';
+const PRECACHE = 'precache_v4';
+const RUNTIME = 'runtime_v1';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
   '/euchre.gg', // Alias for index.html
+  '/euchre.gg/cards/10C.svg',
+  '/euchre.gg/cards/10D.svg',
+  '/euchre.gg/cards/10H.svg',
+  '/euchre.gg/cards/10S.svg',
+  '/euchre.gg/cards/4C.svg',
+  '/euchre.gg/cards/4D.svg',
+  '/euchre.gg/cards/4H.svg',
+  '/euchre.gg/cards/4S.svg',
+  '/euchre.gg/cards/6C.svg',
+  '/euchre.gg/cards/6D.svg',
+  '/euchre.gg/cards/6H.svg',
+  '/euchre.gg/cards/6S.svg',
+  '/euchre.gg/cards/9C.svg',
+  '/euchre.gg/cards/9D.svg',
+  '/euchre.gg/cards/9H.svg',
+  '/euchre.gg/cards/9S.svg',
+  '/euchre.gg/cards/AC.svg',
+  '/euchre.gg/cards/AD.svg',
+  '/euchre.gg/cards/AH.svg',
+  '/euchre.gg/cards/AS.svg',
+  '/euchre.gg/cards/BLUE_BACK.svg',
+  '/euchre.gg/cards/C.svg',
+  '/euchre.gg/cards/D.svg',
+  '/euchre.gg/cards/H.svg',
+  '/euchre.gg/cards/JC.svg',
+  '/euchre.gg/cards/JD.svg',
+  '/euchre.gg/cards/JH.svg',
+  '/euchre.gg/cards/JS.svg',
+  '/euchre.gg/cards/KC.svg',
+  '/euchre.gg/cards/KD.svg',
+  '/euchre.gg/cards/KH.svg',
+  '/euchre.gg/cards/KS.svg',
+  '/euchre.gg/cards/QC.svg',
+  '/euchre.gg/cards/QD.svg',
+  '/euchre.gg/cards/QH.svg',
+  '/euchre.gg/cards/QS.svg',
+  '/euchre.gg/cards/RED_BACK.svg',
+  '/euchre.gg/cards/S.svg',
   '/euchre.gg/images/dealer.svg',
   '/euchre.gg/images/icon-192.png',
   '/euchre.gg/images/icon-512.png',
