@@ -47,5 +47,5 @@ exports.handler = async (event) => {
       resp.message = 'Game does not exist';
     }
   }
-  return {statusCode: 200, body: JSON.stringify(resp)};
+  return {statusCode: 200, headers: {'Access-Control-Allow-Origin': '*'}, body: JSON.stringify(resp)};
 };
