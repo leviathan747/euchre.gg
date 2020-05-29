@@ -16,10 +16,11 @@ export default withTheme(class Hand extends React.Component {
 
   render() {
     const screenWidth = this.props.screenWidth || visualViewport.width * 0.95;
-    const screenHeight = this.props.screenHeight || (visualViewport.height - 50) * 0.95;
+    const screenHeight = this.props.screenHeight || visualViewport.height * 0.95;
     const spacing = this.props.spacing || this.state.spacing;
     const width = this.props.width || this.state.width;
-    const selectHeight = this.props.selectHeight || this.state.selectHeight;
+    const cardWidth = screenWidth * width;
+    const cardHeight = cardWidth * 1.4;
     return (
       <Grid item>
         {this.props.cards.map((card, i) => <img src={`/euchre.gg/cards/${card}.svg`} 
@@ -32,10 +33,10 @@ export default withTheme(class Hand extends React.Component {
             }
           }}
           style={{
-            width: screenWidth * width,
-            marginLeft: i ? -(Math.floor(screenWidth * width * 1.4)) * (1.0 - spacing) : 0,
-            paddingTop: ((screenHeight - Math.floor(screenWidth * width * 1.4)) / 3 * 2) - (this.props.activeCard === card ? screenWidth * width * selectHeight : 0),
-            paddingBottom: ((screenHeight - Math.floor(screenWidth * width * 1.4)) / 3) + (this.props.activeCard === card ? screenWidth * width * selectHeight : 0),
+            width: cardWidth,
+            marginLeft: i ? -cardHeight * (1.0 - spacing) : 0,
+            paddingTop: this.props.activeCard === card ? 0 : ((screenHeight - cardHeight) / 4 * 3),
+            paddingBottom: this.props.activeCard === card ? (screenHeight - cardHeight) : ((screenHeight - cardHeight) / 4 * 1),
             transition: this.props.theme.transitions.create("all", {
               easing: this.props.theme.transitions.easing.easeInOut, 
               duration: this.props.theme.transitions.duration.leavingScreen,

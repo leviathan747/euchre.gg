@@ -85,7 +85,7 @@ export default withTheme(class EuchrePlayer extends React.Component {
                 easing: this.props.theme.transitions.easing.easeInOut, 
                 duration: this.props.theme.transitions.duration.leavingScreen,
               })}} >
-          <Hand cards={hand} activeCard={this.state.selectedCard} onSelect={(card) => {this.setState(Object.assign({}, this.state, {selectedCard: card}))}} />
+          <Hand cards={hand} activeCard={this.state.selectedCard} onSelect={(card) => {this.setState(Object.assign({}, this.state, {selectedCard: card}))}} screenHeight={(visualViewport.height - 52) * 0.95} />
         </Grid>
         {choosingTrump ? (
         <Fade in={true} style={{transitionDelay: this.props.theme.transitions.duration.leavingScreen}}>
