@@ -8,6 +8,7 @@ import Chip from '@material-ui/core/Chip';
 import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
 
+import EuchreScorecards from './EuchreScorecards';
 import Hand from './Hand';
 import TrumpPicker from './TrumpPicker';
 import { orderHand } from '../euchreutils';
@@ -50,6 +51,18 @@ export default withTheme(class EuchrePlayer extends React.Component {
     const hand = orderHand(this.props.gameState.hand.hands[this.props.player-1], this.props.gameState.hand.trump);
     const dealer = this.props.gameState.hand.dealer === this.props.player;
     const turn = this.props.gameState.hand.turn === this.props.player;
+    return (
+      <Grid container>
+        <Grid item xs={12} container alignItems="center" justify="center"
+              style={{transition: this.props.theme.transitions.create("all", {
+                easing: this.props.theme.transitions.easing.easeInOut, 
+                duration: this.props.theme.transitions.duration.leavingScreen,
+              })}} >
+          <EuchreScorecards suit="D" width={0.2} />
+        </Grid>
+      </Grid>
+    );
+    /*
     return (
       <Grid container>
         <Grid item xs={12} container alignItems="center" justify="flex-end">
@@ -99,6 +112,7 @@ export default withTheme(class EuchrePlayer extends React.Component {
         ) : (null)}
       </Grid>
     );
+    */
   }
 
 });
