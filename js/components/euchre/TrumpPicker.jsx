@@ -5,7 +5,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Grid from '@material-ui/core/Grid';
 
 import TrumpSelection from './TrumpSelection';
-import { decodeCard } from '../euchreutils';
+import { decodeCard } from './euchreutils';
 
 export default function TrumpPicker(props) {
   const card = props.topCard ? decodeCard(props.topCard) : null;

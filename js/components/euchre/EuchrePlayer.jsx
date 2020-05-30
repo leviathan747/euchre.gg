@@ -9,9 +9,9 @@ import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
 
 import EuchreScorecards from './EuchreScorecards';
-import Hand from './Hand';
+import Hand from '../cards/Hand';
 import TrumpPicker from './TrumpPicker';
-import { orderHand } from '../euchreutils';
+import { orderHand } from './euchreutils';
 
 export default withTheme(class EuchrePlayer extends React.Component {
 

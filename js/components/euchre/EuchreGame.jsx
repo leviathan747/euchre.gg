@@ -1,7 +1,7 @@
 import React from 'react';
 
 import EuchrePlayer from './EuchrePlayer';
-import Game from './Game';
+import Game from '../Game';
 
 export default class EuchreGame extends Game {
 

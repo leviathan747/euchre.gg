@@ -3,9 +3,9 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-import EuchreGame from './EuchreGame';
-import EuchrePlayer from './EuchrePlayer';
-import Table from './Table';
+import EuchreGame from './euchre/EuchreGame';
+import EuchrePlayer from './euchre/EuchrePlayer';
+import Table from './cards/Table';
 
 const theme = createMuiTheme({
   palette: {
