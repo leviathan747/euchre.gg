@@ -3,6 +3,8 @@ import { withTheme } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 
+import Card from './Card';
+
 export default withTheme(class Hand extends React.Component {
 
   constructor(props) {
@@ -23,7 +25,10 @@ export default withTheme(class Hand extends React.Component {
     const cardHeight = cardWidth * 1.4;
     return (
       <Grid item>
-        {this.props.cards.map((card, i) => <img src={`/euchre.gg/cards/${card}.svg`} 
+        {this.props.cards.map((card, i) => <Card card={card} 
+          width={cardWidth} leftShift={i ? -cardHeight * (1.0 - spacing) : 0}
+          paddingTop={this.props.activeCard === card ? 0 : ((screenHeight - cardHeight) / 4 * 3)}
+          paddingBottom={this.props.activeCard === card ? (screenHeight - cardHeight) : ((screenHeight - cardHeight) / 4 * 1)}
           onClick={() => {
             if (card === this.props.activeCard) {
               this.props.onSelect();
@@ -31,16 +36,6 @@ export default withTheme(class Hand extends React.Component {
             else {
               this.props.onSelect(card);
             }
-          }}
-          style={{
-            width: cardWidth,
-            marginLeft: i ? -cardHeight * (1.0 - spacing) : 0,
-            paddingTop: this.props.activeCard === card ? 0 : ((screenHeight - cardHeight) / 4 * 3),
-            paddingBottom: this.props.activeCard === card ? (screenHeight - cardHeight) : ((screenHeight - cardHeight) / 4 * 1),
-            transition: this.props.theme.transitions.create("all", {
-              easing: this.props.theme.transitions.easing.easeInOut, 
-              duration: this.props.theme.transitions.duration.leavingScreen,
-            })
           }} />)}
       </Grid>
     );

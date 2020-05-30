@@ -3,6 +3,8 @@ import React from 'react';
 import EuchrePlayer from './EuchrePlayer';
 import Game from '../Game';
 
+import { v4 as uuidv4 } from 'uuid';
+
 export default class EuchreGame extends Game {
 
   constructor(props) {
@@ -10,7 +12,7 @@ export default class EuchreGame extends Game {
   }
 
   componentDidMount() {
-    const gameId = '12345';
+    const gameId = uuidv4();
     const initialState = {
       game: {
         aScore: 0,
@@ -20,7 +22,7 @@ export default class EuchreGame extends Game {
         dealer: 1,
         turn: 1,
         trump: undefined,
-        topCard: 'QD',
+        topCard: undefined, //'QD',
         invalidSuit: 'H',
         hands: [
           ['QC', 'JS', 'AH', 'JC', 'QH']
