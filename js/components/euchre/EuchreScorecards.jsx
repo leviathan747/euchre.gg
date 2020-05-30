@@ -13,15 +13,15 @@ export default withTheme(class EuchreScorecards extends React.Component {
       score: 0,
       cardPositions: [
         {left: 0,    top: 0,    angle: 0 },
-        {left: 0.15, top: 0.15, angle: 45},
-        {left: 0,    top: 0.3,  angle: 0 },
+        {left: 0.9,  top: 0.2,  angle: 45},
+        {left: 0,    top: 0.35, angle: 0 },
         {left: 0.5,  top: 0,    angle: 0 },
         {left: 0,    top: 0,    angle: 0 },
-        {left: 0.15, top: 0.15, angle: 45},
-        {left: 0,    top: 0.3,  angle: 0 },
+        {left: 0.9,  top: 0.2,  angle: 45},
+        {left: 0,    top: 0.35, angle: 0 },
         {left: 0.5,  top: 0,    angle: 0 },
         {left: 0,    top: 0.65, angle: 0 },
-        {left: 0.7,  top: 0.7,  angle: 45},
+        {left: 1.3,  top: 0.85, angle: 45},
         {left: 0.9,  top: 0,    angle: 0 }
       ],
       slop: 0.1
