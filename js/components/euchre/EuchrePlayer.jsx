@@ -51,16 +51,11 @@ export default withTheme(class EuchrePlayer extends React.Component {
     const hand = orderHand(this.props.gameState.hand.hands[this.props.player-1], this.props.gameState.hand.trump);
     const dealer = this.props.gameState.hand.dealer === this.props.player;
     const turn = this.props.gameState.hand.turn === this.props.player;
+
+    const screenWidth = this.props.screenWidth || visualViewport.width * 0.95;
+    const screenHeight = this.props.screenHeight || visualViewport.height * 0.95;
     return (
-      <Grid container>
-        <Grid item xs={12} container alignItems="center" justify="center"
-              style={{transition: this.props.theme.transitions.create("all", {
-                easing: this.props.theme.transitions.easing.easeInOut, 
-                duration: this.props.theme.transitions.duration.leavingScreen,
-              })}} >
-          <EuchreScorecards suit="D" width={0.2} />
-        </Grid>
-      </Grid>
+      <EuchreScorecards top={screenHeight / 2} left={screenWidth / 2} suit="D" width={0.2} />
     );
     /*
     return (

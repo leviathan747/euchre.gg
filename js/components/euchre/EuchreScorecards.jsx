@@ -12,17 +12,17 @@ export default withTheme(class EuchreScorecards extends React.Component {
     this.state = {
       score: 0,
       cardPositions: [
-        {left: 0,    top: 0,    angle: 0 },
-        {left: 0.9,  top: 0.2,  angle: 45},
-        {left: 0,    top: 0.35, angle: 0 },
-        {left: 0.5,  top: 0,    angle: 0 },
-        {left: 0,    top: 0,    angle: 0 },
-        {left: 0.9,  top: 0.2,  angle: 45},
-        {left: 0,    top: 0.35, angle: 0 },
-        {left: 0.5,  top: 0,    angle: 0 },
-        {left: 0,    top: 0.65, angle: 0 },
-        {left: 1.3,  top: 0.85, angle: 45},
-        {left: 0.9,  top: 0,    angle: 0 }
+        {left: 0,   top: 0,    angle: 0 },
+        {left: 0.1, top: 0.1,  angle: 45},
+        {left: 0,   top: 0.35, angle: 0 },
+        {left: 0.5, top: 0,    angle: 0 },
+        {left: 0,   top: 0,    angle: 0 },
+        {left: 0.1, top: 0.1,  angle: 45},
+        {left: 0,   top: 0.35, angle: 0 },
+        {left: 0.5, top: 0,    angle: 0 },
+        {left: 0,   top: 0.65, angle: 0 },
+        {left: 0.5, top: 0.5,  angle: 45},
+        {left: 0.9, top: 0,    angle: 0 }
       ],
       slop: 0.1
     }
@@ -37,11 +37,16 @@ export default withTheme(class EuchreScorecards extends React.Component {
     const top = this.state.cardPositions[this.state.score].top + ((Math.random() - 0.5) * this.state.slop);
     const angle = this.state.cardPositions[this.state.score].angle + ((Math.random() - 0.5) * this.state.slop * 45);
     return (
-      <Grid item onClick={() => {this.setState(Object.assign({}, this.state, {score: (this.state.score + 1) % 11}))}} >
-        <Card card={`6${this.props.suit}`} width={cardWidth} paddingTop={top >= 0 ? 0 : -top * cardHeight} paddingBottom={top >= 0 ? top * cardHeight : 0} />
-        <Card card={`4${this.props.suit}`} faceDown={this.state.score <= 3} width={cardWidth} leftShift={-cardWidth + left * cardWidth}
-              paddingTop={top >= 0 ? top * cardHeight : 0} paddingBottom={top >= 0 ? 0 : -top * cardHeight} style={{transform: `rotate(${angle}deg)`}} />
-      </Grid>
+      <div onClick={() => {this.setState(Object.assign({}, this.state, {score: (this.state.score + 1) % 11}))}} style={{
+        position: 'absolute',
+        top: this.props.top - cardHeight / 2,
+        left: this.props.left - cardWidth / 2,
+      }}>
+        <Card card={`6${this.props.suit}`} width={cardWidth} />
+        <Card card={`4${this.props.suit}`} faceDown={this.state.score <= 3} width={cardWidth}
+              top={top * cardHeight} left={left * cardWidth}
+              style={{transform: `rotate(${angle}deg)`}} />
+      </div>
     );
   }
 
