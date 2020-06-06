@@ -1,6 +1,7 @@
 import React from 'react';
 
 import EuchrePlayer from './EuchrePlayer';
+import EuchreTable from './EuchreTable';
 import Game from '../Game';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -30,15 +31,15 @@ export default class EuchreGame extends Game {
       }
     }
     this.setGameState(initialState, gameId);
-    this.setState(Object.assign({}, this.state, {player: 1}));
+    this.setState(Object.assign({}, this.state, {player: undefined}));
   }
 
   render() {
     if (this.state.gameState) {
       return this.state.player ? (
-        <EuchrePlayer player={this.state.player} gameState={this.state.gameState} onGameStateChange={this.setGameState.bind(this)}/>
+        <EuchrePlayer player={this.state.player} gameState={this.state.gameState} onGameStateChange={this.setGameState.bind(this)} />
       ) : (
-        <div>TODO</div>
+        <EuchreTable player={this.state.player} gameState={this.state.gameState} onGameStateChange={this.setGameState.bind(this)} />
       );
     }
     else {
