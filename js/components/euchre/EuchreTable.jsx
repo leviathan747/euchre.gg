@@ -9,7 +9,7 @@ export default withTheme(class EuchreTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dealer: 4,
+      dealer: 3,
       cardWidth: 0.1,
     }
   }
@@ -35,7 +35,7 @@ export default withTheme(class EuchreTable extends React.Component {
           <EuchrePlayer player={4} dealer={this.state.dealer} cardWidth={this.state.cardWidth} />
         </div>
         {/* trick pile */}
-        <Stack top={screenHeight / 2 - cardHeight / 2} left={screenWidth / 2 - cardWidth / 2} width={this.state.cardWidth} hRange={2} vRange={2} rRange={180} cards={['AH', 'QH', '9S', 'JC']} />
+        <Stack top={screenHeight / 2 - cardHeight / 2} left={screenWidth / 2 - cardWidth / 2} width={this.state.cardWidth} hRange={0.75} vRange={0.75} rRange={180} cards={['AH', 'QH', '9S', 'JC']} />
       </div>
     );
   }

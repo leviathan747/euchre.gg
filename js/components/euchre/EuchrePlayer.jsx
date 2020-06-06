@@ -23,9 +23,9 @@ export default withTheme(class EuchrePlayer extends React.Component {
           <Stack top={screenHeight - 1.3 * cardHeight} left={screenWidth / 2 - cardWidth / 2} width={this.props.cardWidth} hRange={0.05} vRange={0.05} rRange={1} cards={[{cardFace: 'AH', faceDown: true}, {cardFace: 'QH', faceDown: true}, {cardFace: '9S', faceDown: true}, {cardFace: 'JC', faceDown: false}]} />
         ) : (null)}
         {this.props.player === 1 ? (
-          <EuchreScorecards anchor="bottom left" top={screenHeight - 1.3 * cardHeight} left={0.5 * cardWidth} suit="C" width={this.props.cardWidth} />
+          <EuchreScorecards anchor="bottom left" top={screenHeight - 1.1 * cardHeight} left={0.3 * cardWidth} suit="C" width={this.props.cardWidth} />
         ) : (this.props.player === 4 ? (
-          <EuchreScorecards anchor="bottom right" top={screenHeight - 1.3 * cardHeight} left={screenWidth - 1.5 * cardWidth} suit="D" width={this.props.cardWidth} />
+          <EuchreScorecards anchor="bottom right" top={screenHeight - 1.1 * cardHeight} left={screenWidth - 1.3 * cardWidth} suit="D" width={this.props.cardWidth} />
         ) : (null))}
       </React.Fragment>
     );
