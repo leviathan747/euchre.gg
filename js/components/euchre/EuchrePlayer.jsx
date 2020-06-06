@@ -1,113 +1,34 @@
 import React from 'react';
 import { withTheme } from '@material-ui/core/styles';
 
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Chip from '@material-ui/core/Chip';
-import Fade from '@material-ui/core/Fade';
-import Grid from '@material-ui/core/Grid';
-
 import EuchreScorecards from './EuchreScorecards';
-import Hand from '../cards/Hand';
-import TrumpPicker from './TrumpPicker';
-import { orderHand } from './euchreutils';
+import Stack from '../cards/Stack';
 
 export default withTheme(class EuchrePlayer extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      selectedCard: undefined
     }
-  }
-
-  onPass() {
-    // TODO handle dealer case
-    const state = this.props.gameState;
-    state.hand.turn = (state.hand.turn % 4) + 1;
-    this.props.onGameStateChange(state);
-  }
-
-  onCallUp(suit, alone) {
-    // TODO handle going alone
-    const state = this.props.gameState;
-    state.hand.trump = suit;
-    if (state.hand.dealer !== this.props.player) {
-      // if this is the dealer, they need to choose a discard otherwise the
-      // turn advances to the player left of the deal to start main gameplay
-      state.hand.turn = (state.hand.dealer % 4) + 1;
-    }
-    // add the top card to the dealer's hand
-    if (state.hand.topCard) {
-      state.hand.hands[this.props.gameState.hand.dealer-1].push(this.props.gameState.hand.topCard);
-      state.hand.topCard = undefined;
-    }
-    this.props.onGameStateChange(state);
   }
 
   render() {
-    const choosingTrump = !this.props.gameState.hand.trump && this.props.gameState.hand.turn === this.props.player;
-    const hand = orderHand(this.props.gameState.hand.hands[this.props.player-1], this.props.gameState.hand.trump);
-    const dealer = this.props.gameState.hand.dealer === this.props.player;
-    const turn = this.props.gameState.hand.turn === this.props.player;
-
-    const screenWidth = this.props.screenWidth || visualViewport.width * 0.95;
-    const screenHeight = this.props.screenHeight || visualViewport.height * 0.95;
+    const screenWidth = this.props.player % 2 === 0 ? this.props.screenWidth || visualViewport.width : this.props.screenHeight || visualViewport.height;
+    const screenHeight = this.props.player % 2 === 1 ? this.props.screenWidth || visualViewport.width : this.props.screenHeight || visualViewport.height;
+    const cardWidth = (this.props.screenWidth || visualViewport.width) * this.props.cardWidth;
+    const cardHeight = cardWidth * 1.4;
     return (
-      <EuchreScorecards top={screenHeight / 2} left={screenWidth / 2} suit="D" width={0.2} />
-    );
-    /*
-    return (
-      <Grid container>
-        <Grid item xs={12} container alignItems="center" justify="flex-end">
-          <Grid item>
-            <Box pt={1} pr={1}>
-              <div style={{height: 40}}></div>
-            </Box>
-          </Grid>
-          {turn ? (
-          <Grid item>
-            <Box pt={1} pr={1}>
-              <Chip label="your turn" />
-            </Box>
-          </Grid>
-          ) : (null)}
-          {this.props.gameState.hand.trump ? (
-          <Grid item>
-            <Box pt={1} pr={1}>
-              <img height="40" src={`/euchre.gg/cards/${this.props.gameState.hand.trump}.svg`} />
-            </Box>
-          </Grid>
-          ) : (null)}
-          {dealer ? (
-          <Grid item>
-            <Box pt={1} pr={1}>
-              <img height="40" src="/euchre.gg/images/dealer.svg" />
-            </Box>
-          </Grid>
-          ) : (null)}
-        </Grid>
-        <Grid item xs={choosingTrump ? 10 : 12} container alignItems="center" justify="center"
-              style={{transition: this.props.theme.transitions.create("all", {
-                easing: this.props.theme.transitions.easing.easeInOut, 
-                duration: this.props.theme.transitions.duration.leavingScreen,
-              })}} >
-          <Hand cards={hand} activeCard={this.state.selectedCard} onSelect={(card) => {this.setState(Object.assign({}, this.state, {selectedCard: card}))}} screenHeight={(visualViewport.height - 52) * 0.95} />
-        </Grid>
-        {choosingTrump ? (
-        <Fade in={true} style={{transitionDelay: this.props.theme.transitions.duration.leavingScreen}}>
-          <Grid item xs={2} container alignItems="center" style={{transition: this.props.theme.transitions.create("all", {
-            easing: this.props.theme.transitions.easing.easeInOut, 
-            duration: this.props.theme.transitions.duration.leavingScreen,
-          })}} >
-            <TrumpPicker topCard={this.props.gameState.hand.topCard} disabledSuit={this.props.gameState.hand.invalidSuit} onPass={this.onPass.bind(this)} onCallUp={this.onCallUp.bind(this)} />
-          </Grid>
-        </Fade>
+      <React.Fragment>
+        {this.props.player === this.props.dealer ? (
+          <Stack top={screenHeight - 1.3 * cardHeight} left={screenWidth / 2 - cardWidth / 2} width={this.props.cardWidth} hRange={0.05} vRange={0.05} rRange={1} cards={[{cardFace: 'AH', faceDown: true}, {cardFace: 'QH', faceDown: true}, {cardFace: '9S', faceDown: true}, {cardFace: 'JC', faceDown: false}]} />
         ) : (null)}
-      </Grid>
+        {this.props.player === 1 ? (
+          <EuchreScorecards anchor="bottom left" top={screenHeight - 1.3 * cardHeight} left={0.5 * cardWidth} suit="C" width={this.props.cardWidth} />
+        ) : (this.props.player === 4 ? (
+          <EuchreScorecards anchor="bottom right" top={screenHeight - 1.3 * cardHeight} left={screenWidth - 1.5 * cardWidth} suit="D" width={this.props.cardWidth} />
+        ) : (null))}
+      </React.Fragment>
     );
-    */
   }
 
 });

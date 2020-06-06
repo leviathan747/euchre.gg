@@ -1,24 +1,16 @@
 import React from 'react';
 import { withTheme } from '@material-ui/core/styles';
 
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Chip from '@material-ui/core/Chip';
-import Fade from '@material-ui/core/Fade';
-import Grid from '@material-ui/core/Grid';
-
-import EuchreScorecards from './EuchreScorecards';
-import Hand from '../cards/Hand';
-import TrumpPicker from './TrumpPicker';
-import { orderHand } from './euchreutils';
+import EuchrePlayer from './EuchrePlayer';
+import Stack from '../cards/Stack';
 
 export default withTheme(class EuchreTable extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      cardWidth: 0.1
+      dealer: 4,
+      cardWidth: 0.1,
     }
   }
 
@@ -29,20 +21,21 @@ export default withTheme(class EuchreTable extends React.Component {
     const cardHeight = cardWidth * 1.4;
     return (
       <div>
-        {/* player 1 */}
-        <div style={{position: 'absolute', top: (screenHeight - screenWidth) / 2, left: (screenWidth - screenHeight) / 2, width: screenHeight, height: screenWidth, transformOrigin: 'center center', transform: 'rotate(90deg)', pointerEvents: 'none'}}>
-          <EuchreScorecards anchor="bottom left" top={screenWidth - 1.3 * cardHeight} left={0.5 * cardWidth} suit="C" width={0.1} />
+        <div style={{position: 'absolute', top: 0, left: screenWidth, transformOrigin: 'top left', transform: 'rotate(90deg)'}}>
+          <EuchrePlayer player={1} dealer={this.state.dealer} cardWidth={this.state.cardWidth} />
         </div>
-        {/* player 2 */}
-        <div style={{position: 'absolute', top: 0, left: 0, width: screenWidth, height: screenHeight, transformOrigin: 'center center', transform: 'rotate(180deg)', pointerEvents: 'none'}}>
+        <div style={{position: 'absolute', top: screenHeight, left: screenWidth, transformOrigin: 'top left', transform: 'rotate(180deg)'}}>
+          <EuchrePlayer player={2} dealer={this.state.dealer} cardWidth={this.state.cardWidth} />
         </div>
-        {/* player 3 */}
-        <div style={{position: 'absolute', top: (screenHeight - screenWidth) / 2, left: (screenWidth - screenHeight) / 2, width: screenHeight, height: screenWidth, transformOrigin: 'center center', transform: 'rotate(270deg)', pointerEvents: 'none'}}>
+        <div style={{position: 'absolute', top: screenHeight, left: 0, transformOrigin: 'top left', transform: 'rotate(270deg)'}}>
+          <EuchrePlayer player={3} dealer={this.state.dealer} cardWidth={this.state.cardWidth} />
         </div>
         {/* player 4 */}
-        <div style={{position: 'absolute', top: 0, left: 0, width: screenWidth, height: screenHeight, pointerEvents: 'none'}}>
-          <EuchreScorecards anchor="bottom right" top={screenHeight - 1.3 * cardHeight} left={screenWidth - 1.5 * cardWidth} suit="D" width={0.1} />
+        <div style={{position: 'absolute', top: 0, left: 0}}>
+          <EuchrePlayer player={4} dealer={this.state.dealer} cardWidth={this.state.cardWidth} />
         </div>
+        {/* trick pile */}
+        <Stack top={screenHeight / 2 - cardHeight / 2} left={screenWidth / 2 - cardWidth / 2} width={this.state.cardWidth} hRange={2} vRange={2} rRange={180} cards={['AH', 'QH', '9S', 'JC']} />
       </div>
     );
   }
