@@ -28,12 +28,6 @@ export default withTheme(class EuchreScorecards extends React.Component {
     }
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState(Object.assign({}, this.state, {score: (this.state.score + 1) % 11}));
-    }, 1000);
-  }
-
   render() {
     const score = this.state.score % 11;
     const anchor = this.props.anchor || 'top left';

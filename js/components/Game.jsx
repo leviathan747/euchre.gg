@@ -34,4 +34,9 @@ export default class Game extends React.Component {
     // TODO
   }
 
+  render() {
+    //return React.cloneElement(this.props.game, {gameState: this.state.gameState, setGameState: this.setGameState.bind(this)});
+    return <this.props.game gameState={this.state.gameState} setGameState={this.setGameState.bind(this)} />;
+  }
+
 }

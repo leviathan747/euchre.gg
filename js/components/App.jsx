@@ -5,6 +5,8 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import EuchreGame from './euchre/EuchreGame';
 import EuchrePlayer from './euchre/EuchrePlayer';
+import Game from './Game';
+import GameControls from './game/GameControls';
 import Table from './cards/Table';
 
 const theme = createMuiTheme({
@@ -15,13 +17,13 @@ const theme = createMuiTheme({
   }
 });
 
-
 export default function App(props) {
   return (
     <ThemeProvider theme={theme}>
       <Table>
-        <EuchreGame />
+        <Game game={EuchreGame} />
       </Table>
+      <GameControls />
     </ThemeProvider>
   );
 }

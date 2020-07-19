@@ -2,11 +2,10 @@ import React from 'react';
 
 import EuchrePlayer from './EuchrePlayer';
 import EuchreTable from './EuchreTable';
-import Game from '../Game';
 
 import { v4 as uuidv4 } from 'uuid';
 
-export default class EuchreGame extends Game {
+export default class EuchreGame extends React.Component {
 
   constructor(props) {
     super(props);
@@ -30,16 +29,16 @@ export default class EuchreGame extends Game {
         ]
       }
     }
-    this.setGameState(initialState, gameId);
+    this.props.setGameState(initialState, gameId);
     this.setState(Object.assign({}, this.state, {player: undefined}));
   }
 
   render() {
-    if (this.state.gameState) {
+    if (this.props.gameState) {
       return this.state.player ? (
-        <EuchrePlayer player={this.state.player} gameState={this.state.gameState} onGameStateChange={this.setGameState.bind(this)} />
+        <EuchrePlayer player={this.state.player} gameState={this.props.gameState} onGameStateChange={this.props.setGameState.bind(this)} />
       ) : (
-        <EuchreTable player={this.state.player} gameState={this.state.gameState} onGameStateChange={this.setGameState.bind(this)} />
+        <EuchreTable player={this.state.player} gameState={this.props.gameState} onGameStateChange={this.props.setGameState.bind(this)} />
       );
     }
     else {
