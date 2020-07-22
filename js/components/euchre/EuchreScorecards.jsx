@@ -10,7 +10,6 @@ export default withTheme(class EuchreScorecards extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      score: 1,
       cardPositions: [
         {left: 0,    top: 0,    angle: 0 },
         {left: 0.15, top: 0.15, angle: 45},
@@ -29,7 +28,7 @@ export default withTheme(class EuchreScorecards extends React.Component {
   }
 
   render() {
-    const score = this.state.score % 11;
+    const score = this.props.score % 11;
     const anchor = this.props.anchor || 'top left';
     const screenWidth = this.props.screenWidth || visualViewport.width * 0.95;
     const width = this.props.width;
