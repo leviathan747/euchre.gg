@@ -9,7 +9,7 @@ export default class EuchreGame extends React.Component {
 
   constructor(props) {
     super(props);
-    this.score = 0;
+    this.score = 0;  // TODO
   }
 
   componentDidMount() {
@@ -42,12 +42,12 @@ export default class EuchreGame extends React.Component {
     }
     this.props.setGameState(initialState, gameId);
     this.setState(Object.assign({}, this.state, {player: undefined}));
-    // setInterval(() => {
-    //   const state = initialState;
-    //   state.game.oddScore = (this.score + 1) % 11;
-    //   this.score++;
-    //   this.props.setGameState(state, gameId);
-    // }, 3000);
+    setInterval(() => {
+      const state = initialState;
+      state.game.evenScore = (this.score + 1) % 11;
+      this.score++;
+      this.props.setGameState(state, gameId);
+    }, 1000);
   }
 
   render() {
