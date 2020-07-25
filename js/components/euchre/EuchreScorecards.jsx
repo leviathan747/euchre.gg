@@ -24,7 +24,9 @@ export default withTheme(class EuchreScorecards extends React.Component {
         {left: 0.9,  top: 0,    angle: 0 }
       ],
       slop: 0.1
-    }
+    };
+    this.offset = {left: 0, top: 0, angle: 0};
+    this.score = -1;
   }
 
   render() {
@@ -34,11 +36,14 @@ export default withTheme(class EuchreScorecards extends React.Component {
     const width = this.props.width;
     const cardWidth = screenWidth * width;
     const cardHeight = cardWidth * 1.4;
-    const left = this.state.cardPositions[score].left + ((Math.random() - 0.5) * this.state.slop);
-    const top = this.state.cardPositions[score].top + ((Math.random() - 0.5) * this.state.slop);
-    const angle = this.state.cardPositions[score].angle + ((Math.random() - 0.5) * this.state.slop * 45);
-    const scorecardLeftAdjust = anchor.includes('right') ? Math.max(0, left * cardWidth) : 0;
-    const scorecardTopAdjust = anchor.includes('bottom') ? Math.max(0, top * cardHeight) : 0; 
+    if (score !== this.score) {
+      this.offset.left = this.state.cardPositions[score].left + ((Math.random() - 0.5) * this.state.slop);
+      this.offset.top = this.state.cardPositions[score].top + ((Math.random() - 0.5) * this.state.slop);
+      this.offset.angle = this.state.cardPositions[score].angle + ((Math.random() - 0.5) * this.state.slop * 45);
+      this.score = score;
+    }
+    const scorecardLeftAdjust = anchor.includes('right') ? Math.max(0, this.offset.left * cardWidth) : 0;
+    const scorecardTopAdjust = anchor.includes('bottom') ? Math.max(0, this.offset.top * cardHeight) : 0; 
     return (
       <div style={{
         position: 'relative',
@@ -51,8 +56,8 @@ export default withTheme(class EuchreScorecards extends React.Component {
       }}>
         <Card card={`6${this.props.suit}`} width={cardWidth} />
         <Card card={`4${this.props.suit}`} faceDown={score <= 3} width={cardWidth}
-              top={top * cardHeight} left={left * cardWidth}
-              style={{transform: `rotate(${angle}deg)`}} />
+              top={this.offset.top * cardHeight} left={this.offset.left * cardWidth}
+              style={{transform: `rotate(${this.offset.angle}deg)`}} />
       </div>
     );
   }

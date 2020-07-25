@@ -10,6 +10,8 @@ export default class EuchreGame extends React.Component {
   constructor(props) {
     super(props);
     this.score = 0;  // TODO
+    this.pile = ['10S', '10D', 'AS', '10H'];  // TODO
+    this.pile_index = 1;  // TODO
   }
 
   componentDidMount() {
@@ -45,6 +47,8 @@ export default class EuchreGame extends React.Component {
     setInterval(() => {
       const state = initialState;
       state.game.evenScore = (this.score + 1) % 11;
+      state.hand.pile = this.pile.slice(0, this.pile_index);
+      this.pile_index = (this.pile_index % 4) + 1;
       this.score++;
       this.props.setGameState(state, gameId);
     }, 1000);

@@ -12,32 +12,36 @@ export default class Game extends React.Component {
   }
 
   async setGameState(state, gameId, lastModified) {
-    try {
-      const data = await fetch(`${API_ENDPOINT}/game/${gameId || this.state.gameId}`, {
-        method: 'POST',
-        body: JSON.stringify({
-          last_modified: lastModified || this.state.lastModified,
-          game_state: state
-        })
-      }).then(r => r.json());
-      if (data.success) {
-        this.setState(Object.assign({}, this.state, {
-          gameId: gameId || this.state.gameId,
-          lastModified: data.last_modified,
-          gameState: state
-        }));
-      }
-      else {
-        console.error(data.message);
-        this.setState(Object.assign({}, this.state, {
-          gameId: gameId || this.state.gameId,
-          lastModified: data.last_modified,
-          gameState: data.game_state
-        }));
-      }
-    } catch (err) {
-      console.error('Failed to fetch', err);
-    }
+    // try {
+    //   const data = await fetch(`${API_ENDPOINT}/game/${gameId || this.state.gameId}`, {
+    //     method: 'POST',
+    //     body: JSON.stringify({
+    //       last_modified: lastModified || this.state.lastModified,
+    //       game_state: state
+    //     })
+    //   }).then(r => r.json());
+    //   if (data.success) {
+    //     this.setState(Object.assign({}, this.state, {
+    //       gameId: gameId || this.state.gameId,
+    //       lastModified: data.last_modified,
+    //       gameState: state
+    //     }));
+    //   }
+    //   else {
+    //     console.error(data.message);
+    //     this.setState(Object.assign({}, this.state, {
+    //       gameId: gameId || this.state.gameId,
+    //       lastModified: data.last_modified,
+    //       gameState: data.game_state
+    //     }));
+    //   }
+    // } catch (err) {
+    //   console.error('Failed to fetch', err);
+    // }
+    this.setState(Object.assign({}, this.state, {
+      gameId: gameId || this.state.gameId,
+      gameState: state
+    }));
   }
 
   async checkGameState() {
