@@ -9,9 +9,7 @@ export default class EuchreGame extends React.Component {
 
   constructor(props) {
     super(props);
-    this.score = 0;  // TODO
-    this.pile = ['10S', '10D', 'AS', '10H'];  // TODO
-    this.pile_index = 1;  // TODO
+    this.player = 0;
   }
 
   componentDidMount() {
@@ -28,28 +26,24 @@ export default class EuchreGame extends React.Component {
         topCard: undefined, //'QD',
         invalidSuit: 'H',
         hands: [
-          ['QC', 'JD', 'QH', 'AH'],
-          ['KS', 'JS', '9S', 'KD'],
-          ['9C', 'QD', 'JH', 'QS'],
-          ['KC', 'AC', '9D', '10C']
+          ['QC', 'JD', 'QH', 'AH', 'TS'],
+          ['KS', 'JS', '9S', 'KD', 'TD'],
+          ['9C', 'QD', 'JH', 'QS', 'AS'],
+          ['KC', 'AC', '9D', 'TC', 'TH']
         ],
-        kitty: [
-          {cardFace: 'JC', faceDown: true},
-          {cardFace: 'KH', faceDown: true},
-          {cardFace: 'AD', faceDown: true},
-          {cardFace: '9H', faceDown: false}
-        ],
-        pile: ['10S', '10D', 'AS', '10H']
+        kitty: ['JCD', 'KHD', 'ADD', '9H'],
+        pile: []
       }
     }
     this.props.setGameState(initialState, gameId);
     this.setState(Object.assign({}, this.state, {player: undefined}));
     setInterval(() => {
       const state = initialState;
-      state.game.evenScore = (this.score + 1) % 11;
-      state.hand.pile = this.pile.slice(0, this.pile_index);
-      this.pile_index = (this.pile_index % 4) + 1;
-      this.score++;
+      const card = state.hand.hands[this.player].pop();
+      if (card) {
+        state.hand.pile.push(card);
+      }
+      this.player = (this.player + 1) % 4;
       this.props.setGameState(state, gameId);
     }, 1000);
   }

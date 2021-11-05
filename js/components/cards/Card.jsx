@@ -37,7 +37,7 @@ export default function Card(props) {
   const backStyle = Object.assign({}, imgStyle, {transform: props.faceDown ? 'none' : 'rotateY(180deg)'});
   const {faceDown, card, width, top, left, style, ...remainingProps} = props;
   return (
-    <div style={divStyle}>
+    <div key={props.card} style={divStyle}>
       <img src={`/euchre.gg/cards/${CARD_BACK}.svg`} style={backStyle} />
       <img src={`/euchre.gg/cards/${props.card}.svg`} style={frontStyle} />
     </div>

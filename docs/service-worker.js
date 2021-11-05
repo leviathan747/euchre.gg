@@ -7,10 +7,10 @@ const RUNTIME = 'runtime_v3';
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
   '/euchre.gg', // Alias for index.html
-  '/euchre.gg/cards/10C.svg',
-  '/euchre.gg/cards/10D.svg',
-  '/euchre.gg/cards/10H.svg',
-  '/euchre.gg/cards/10S.svg',
+  '/euchre.gg/cards/TC.svg',
+  '/euchre.gg/cards/TD.svg',
+  '/euchre.gg/cards/TH.svg',
+  '/euchre.gg/cards/TS.svg',
   '/euchre.gg/cards/4C.svg',
   '/euchre.gg/cards/4D.svg',
   '/euchre.gg/cards/4H.svg',

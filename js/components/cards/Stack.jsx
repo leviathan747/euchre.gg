@@ -9,6 +9,11 @@ export default withTheme(class Stack extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      left: undefined,
+      top: undefined,
+      angle: undefined
+    };
     this.cardPositions = [];
   }
 
@@ -47,7 +52,7 @@ export default withTheme(class Stack extends React.Component {
             angle = this.cardPositions[i].angle;
           }
           return (
-            <Card card={card.cardFace || card} faceDown={card.faceDown} width={cardWidth}
+            <Card card={card.slice(0, 2)} faceDown={this.props.faceDown || card[2]} width={cardWidth}
               top={top * cardHeight} left={left * cardWidth}
               style={{transform: `rotate(${angle}deg)`}} />
           );
